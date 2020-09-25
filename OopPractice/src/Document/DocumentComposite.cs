@@ -56,7 +56,7 @@ namespace OopPractice.Document
       return this.docs.SelectMany(doc => doc.GetFileNames());
     }
 
-    public override IDocumentComponent TryFind(string name)
+    public override IDocumentComponent? TryFind(string name)
     {
       foreach (var doc in this.docs)
       {

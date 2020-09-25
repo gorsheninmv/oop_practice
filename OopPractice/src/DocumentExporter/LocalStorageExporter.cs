@@ -20,7 +20,7 @@ namespace OopPractice.DocumentExporter
 
       foreach (var fileName in fileNames)
       {
-        IDocumentComponent doc = docs.TryFind(fileName);
+        IDocumentComponent? doc = docs.TryFind(fileName);
 
         if (doc != null)
           Console.WriteLine($"Файл {doc.Name} экспортирован в папку {destDirFullPath}.");

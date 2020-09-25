@@ -33,7 +33,7 @@ namespace OopPractice.Document
       yield return this.Name;
     }
 
-    public virtual IDocumentComponent TryFind(string name)
+    public virtual IDocumentComponent? TryFind(string name)
     {
       return this.Name.Equals(name) ? this : null;
     }

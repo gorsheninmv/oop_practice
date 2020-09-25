@@ -32,7 +32,7 @@ namespace OopPractice.Document
     /// Найти документ или комплект документов.
     /// </summary>
     /// <param name="name">Имя документа/комплекта.</param>
-    /// <returns>Документ/комплект.</returns>
-    IDocumentComponent TryFind(string name);
+    /// <returns>Документ/комплект. Если не найден, то null.</returns>
+    IDocumentComponent? TryFind(string name);
   }
 }
