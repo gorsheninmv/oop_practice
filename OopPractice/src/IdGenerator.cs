@@ -44,7 +44,7 @@
     static IdGenerator()
     {
       Instance = new IdGenerator();
-      unassignedId = 0;
+      unassignedId = 1;
     }
 
     #endregion

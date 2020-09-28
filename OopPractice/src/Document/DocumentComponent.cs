@@ -15,7 +15,7 @@ namespace OopPractice.Document
     /// <returns>Описание документа.</returns>
     protected virtual string MakeDescription()
     {
-      return this.Name;
+      return $"{this.Name} (id: {this.Id})";
     }
 
     #endregion

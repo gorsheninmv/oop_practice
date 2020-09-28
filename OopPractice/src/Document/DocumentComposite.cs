@@ -38,7 +38,7 @@ namespace OopPractice.Document
     protected override string MakeDescription()
     {
       var sb = new StringBuilder();
-      sb.Append(this.Name);
+      sb.Append($"{this.Name} (id: {this.Id})");
 
       foreach (var doc in this.docs)
       {
