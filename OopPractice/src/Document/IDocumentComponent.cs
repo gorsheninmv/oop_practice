@@ -23,16 +23,14 @@ namespace OopPractice.Document
     string Description { get; }
 
     /// <summary>
+    /// Дочерние документы.
+    /// </summary>
+    IEnumerable<IDocumentComponent> Children { get; }
+
+    /// <summary>
     /// Получить имена документов.
     /// </summary>
     /// <returns>Список файлов.</returns>
     IEnumerable<string> GetFileNames();
-
-    /// <summary>
-    /// Найти документ или комплект документов.
-    /// </summary>
-    /// <param name="name">Имя документа/комплекта.</param>
-    /// <returns>Документ/комплект. Если не найден, то null.</returns>
-    IDocumentComponent? TryFind(string name);
   }
 }

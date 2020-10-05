@@ -28,14 +28,11 @@ namespace OopPractice.Document
 
     public string Description => this.MakeDescription();
 
+    public virtual IEnumerable<IDocumentComponent> Children => new IDocumentComponent[0];
+
     public virtual IEnumerable<string> GetFileNames()
     {
       yield return this.Name;
-    }
-
-    public virtual IDocumentComponent? TryFind(string name)
-    {
-      return this.Name.Equals(name) ? this : null;
     }
 
     #endregion
@@ -46,10 +43,11 @@ namespace OopPractice.Document
     /// Конструктор.
     /// </summary>
     /// <param name="name">Имя документа.</param>
-    public DocumentComponent(string name)
+    /// <param name="id">id-документа.</param>
+    public DocumentComponent(string name, uint id)
     {
       this.Name = name;
-      this.Id = IdGenerator.Instance.GetId();
+      this.Id = id;
     }
 
     #endregion

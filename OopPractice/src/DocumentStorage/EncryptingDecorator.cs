@@ -1,7 +1,7 @@
 ﻿using OopPractice.Document;
 using OopPractice.ExternalServices;
 
-namespace OopPractice.DocumentExporter
+namespace OopPractice.DocumentStorage
 {
   /// <summary>
   /// Декоратор шифрования.
@@ -10,9 +10,9 @@ namespace OopPractice.DocumentExporter
   {
     #region Базовый класс
 
-    public override void Export(IDocumentComponent docs, string destDirFullPath)
+    public override void Save(IDocumentComponent docs, string destDirFullPath)
     {
-      this.exporter.Export(docs, destDirFullPath);
+      this.storage.Save(docs, destDirFullPath);
 
       var encryptingService = new EncryptingService();
       encryptingService.Encrypt(destDirFullPath);
@@ -25,8 +25,8 @@ namespace OopPractice.DocumentExporter
     /// <summary>
     /// Конструтор.
     /// </summary>
-    /// <param name="exporter">Объект, поддреживающий экспорт документов.</param>
-    public EncryptingDecorator(IExporter exporter) : base(exporter) { }
+    /// <param name="storage">Объект, поддреживающий экспорт документов.</param>
+    public EncryptingDecorator(IFileSystemStorage storage) : base(storage) { }
 
     #endregion
   }

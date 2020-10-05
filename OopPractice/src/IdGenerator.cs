@@ -11,12 +11,12 @@
     /// <summary>
     /// Инстанс одиночки.
     /// </summary>
-    public static IdGenerator Instance { get; }
+    public static IdGenerator Instance { get; } = new IdGenerator();
 
     /// <summary>
     /// Свободный ID.
     /// </summary>
-    private static uint unassignedId;
+    private static uint nextId = 1;
 
     #endregion
 
@@ -28,23 +28,7 @@
     /// <returns>ID.</returns>
     public uint GetId()
     {
-      uint ret = unassignedId;
-      ++unassignedId;
-
-      return ret;
-    }
-
-    #endregion
-
-    #region Конструкторы
-
-    /// <summary>
-    /// Конструтор.
-    /// </summary>
-    static IdGenerator()
-    {
-      Instance = new IdGenerator();
-      unassignedId = 1;
+      return nextId++;
     }
 
     #endregion

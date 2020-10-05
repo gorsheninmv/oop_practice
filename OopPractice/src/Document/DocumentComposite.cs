@@ -15,7 +15,7 @@ namespace OopPractice.Document
     /// <summary>
     /// Документы / комплекты документов.
     /// </summary>
-    private readonly List<IDocumentComponent> docs;
+    private readonly List<IDocumentComponent> docs = new List<IDocumentComponent>();
 
     #endregion
 
@@ -35,6 +35,13 @@ namespace OopPractice.Document
 
     #region Базовый класс
 
+    public override IEnumerable<IDocumentComponent> Children => this.docs;
+
+    public override IEnumerable<string> GetFileNames()
+    {
+      return this.docs.SelectMany(doc => doc.GetFileNames());
+    }
+
     protected override string MakeDescription()
     {
       var sb = new StringBuilder();
@@ -51,24 +58,6 @@ namespace OopPractice.Document
       return sb.ToString();
     }
 
-    public override IEnumerable<string> GetFileNames()
-    {
-      return this.docs.SelectMany(doc => doc.GetFileNames());
-    }
-
-    public override IDocumentComponent? TryFind(string name)
-    {
-      foreach (var doc in this.docs)
-      {
-        var found = doc.TryFind(name);
-
-        if (found != null)
-          return found;
-      }
-
-      return null;
-    }
-
     #endregion
 
     #region Конструкторы
@@ -77,10 +66,8 @@ namespace OopPractice.Document
     /// Конструктор.
     /// </summary>
     /// <param name="name">Имя комплекта.</param>
-    public DocumentComposite(string name) : base(name)
-    {
-      this.docs = new List<IDocumentComponent>();
-    }
+    /// <param name="id">Id комплекта.</param>
+    public DocumentComposite(string name, uint id) : base(name, id) { }
 
     #endregion
   }
