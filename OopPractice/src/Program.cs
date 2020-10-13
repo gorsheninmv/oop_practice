@@ -1,5 +1,6 @@
 ﻿using System;
 using OopPractice.Document;
+using OopPractice.DocumentExporter;
 using OopPractice.DocumentStorage;
 
 namespace OopPractice
@@ -31,8 +32,8 @@ namespace OopPractice
 
       Console.WriteLine(doc.Description);
 
-      IFileSystemStorage storage = new PackingDecorator(new EncryptingDecorator(new FakeFileSystemStorage()));
-      storage.Save(doc, DestinationDirectoryPath);
+      IExporter exporter = new PackingDecorator(new EncryptingDecorator(new LocalStorageFakeExporter()));
+      exporter.Export(doc, DestinationDirectoryPath);
     }
   }
 

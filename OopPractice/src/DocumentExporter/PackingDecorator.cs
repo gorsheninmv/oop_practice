@@ -1,7 +1,7 @@
 ﻿using OopPractice.Document;
 using OopPractice.ExternalServices;
 
-namespace OopPractice.DocumentStorage
+namespace OopPractice.DocumentExporter
 {
   /// <summary>
   /// Декоратор архивирования.
@@ -10,9 +10,9 @@ namespace OopPractice.DocumentStorage
   {
     #region Базовый класс
 
-    public override void Save(IDocumentComponent docs, string destDirFullPath)
+    public override void Export(IDocumentComponent docs, string destDirFullPath)
     {
-      this.storage.Save(docs, destDirFullPath);
+      this.exporter.Export(docs, destDirFullPath);
 
       var packingService = new PackingService();
       packingService.Pack(destDirFullPath, docs.Name);
@@ -25,8 +25,8 @@ namespace OopPractice.DocumentStorage
     /// <summary>
     /// Конструтор.
     /// </summary>
-    /// <param name="storage">Объект, поддреживающий экспорт документов.</param>
-    public PackingDecorator(IFileSystemStorage storage) : base(storage) { }
+    /// <param name="exporter">Объект, поддреживающий экспорт документов.</param>
+    public PackingDecorator(IExporter exporter) : base(exporter) { }
 
     #endregion
   }

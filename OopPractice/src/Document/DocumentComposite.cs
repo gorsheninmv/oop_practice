@@ -8,14 +8,14 @@ namespace OopPractice.Document
   /// <summary>
   /// Комплект документов.
   /// </summary>
-  internal sealed class DocumentComposite : DocumentComponent, IDocumentComposite
+  internal sealed class DocumentComposite : DocumentComponent
   {
     #region Поля и свойства
 
     /// <summary>
     /// Документы / комплекты документов.
     /// </summary>
-    private readonly List<IDocumentComponent> docs = new List<IDocumentComponent>();
+    private readonly List<IDocumentComponent> documents = new List<IDocumentComponent>();
 
     #endregion
 
@@ -23,31 +23,31 @@ namespace OopPractice.Document
 
     public void Add(IDocumentComponent doc)
     {
-      this.docs.Add(doc);
+      this.documents.Add(doc);
     }
 
     public void Add(IEnumerable<IDocumentComponent> docs)
     {
-      this.docs.AddRange(docs);
+      this.documents.AddRange(docs);
     }
 
     #endregion
 
     #region Базовый класс
 
-    public override IEnumerable<IDocumentComponent> Children => this.docs;
+    public override IEnumerable<IDocumentComponent> Children => this.documents;
 
     public override IEnumerable<string> GetFileNames()
     {
-      return this.docs.SelectMany(doc => doc.GetFileNames());
+      return this.documents.SelectMany(doc => doc.GetFileNames());
     }
 
-    protected override string MakeDescription()
+    protected override string CreateDescription()
     {
       var sb = new StringBuilder();
       sb.Append($"{this.Name} (id: {this.Id})");
 
-      foreach (var doc in this.docs)
+      foreach (var doc in this.documents)
       {
         sb.Append(Environment.NewLine);
         sb.Append(doc.Description);

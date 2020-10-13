@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using OopPractice.Document;
 
-namespace OopPractice.DocumentStorage
+namespace OopPractice.DocumentExporter
 {
   /// <summary>
-  /// Хранилище-заглушка, имитрующее сохранение в файловой системе.
+  /// Заглушка, имитрующая экспорт в файловую систему.
   /// </summary>
-  internal sealed class FakeFileSystemStorage : IFileSystemStorage
+  internal sealed class LocalStorageFakeExporter : IExporter
   {
     #region Методы
 
@@ -27,15 +27,16 @@ namespace OopPractice.DocumentStorage
       else
       {
         IEnumerable<IDocumentComponent> docs = document.Children;
-        return docs.Select(doc => this.TryGetDocument(doc, name)).FirstOrDefault(found => found != null);
+        return docs.Select(doc => this.TryGetDocument(doc, name))
+          .FirstOrDefault(found => found != null);
       }
     }
 
     #endregion
 
-    #region IFileSystemStorage
+    #region IExpoter
 
-    public void Save(IDocumentComponent document, string destDirFullPath)
+    public void Export(IDocumentComponent document, string destDirFullPath)
     {
       IEnumerable<string> documentNames = document.GetFileNames();
 

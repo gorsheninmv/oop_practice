@@ -13,7 +13,7 @@ namespace OopPractice.Document
     /// Создать описание документа.
     /// </summary>
     /// <returns>Описание документа.</returns>
-    protected virtual string MakeDescription()
+    protected virtual string CreateDescription()
     {
       return $"{this.Name} (id: {this.Id})";
     }
@@ -26,7 +26,7 @@ namespace OopPractice.Document
 
     public string Name { get; set; }
 
-    public string Description => this.MakeDescription();
+    public string Description => this.CreateDescription();
 
     public virtual IEnumerable<IDocumentComponent> Children => new IDocumentComponent[0];
 
